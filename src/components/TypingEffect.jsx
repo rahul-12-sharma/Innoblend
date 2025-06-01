@@ -11,7 +11,7 @@ export default function TypingEffect() {
             'Product Mockup',
             'Graphic Design',
           ]}
-          loop={0} // 0 = Infinite loop
+          loop={0}
           cursor
           cursorStyle="|"
           typeSpeed={50}
