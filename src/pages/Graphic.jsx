@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineHome, AiOutlinePhone } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 
 function Graphic() {
@@ -69,30 +70,30 @@ function Graphic() {
 
       {/* Navigation Buttons */}
       <div className="fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-4 z-50">
-        <a
-          href="/"
+        <Link
+          to='/'
           className="bg-blue-100 hover:bg-blue-200 text-blue-600 w-12 h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300"
           title="Home"
         >
           <AiOutlineHome size={22} />
-        </a>
+        </Link>
 
-        <a
-          href="/contact"
+        <Link
+          to="/contact"
           className="bg-green-100 hover:bg-green-200 text-green-600 w-12 h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300"
           title="Contact"
         >
           <AiOutlinePhone size={22} />
-        </a>
+        </Link>
       </div>
 
       <div className="text-center mt-16">
-        <a
-          href="/contact"
+        <Link
+          to="/contact"
           className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg"
         >
           🚀 Request a Custom Strategy
-        </a>
+        </Link>
       </div>
 
     </section>
