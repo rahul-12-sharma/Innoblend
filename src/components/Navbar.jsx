@@ -7,16 +7,16 @@ export default function Navbar() {
   const location = useLocation();
 
   const links = [
+    { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
-    { to: '/', label: 'Services' },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-md border-b border-white/20 shadow-md transition-all">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <a href="/" aria-label="Homepage">
+        <Link to="/" aria-label="Homepage">
           <h1 className="text-xl font-bold text-white flex items-center gap-2 select-none">
             <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="32" cy="32" r="30" stroke="#2dd4bf" strokeWidth="4" fill="none" />
@@ -27,7 +27,7 @@ export default function Navbar() {
             </svg>
             <span className="text-teal-400">Innoblend</span>
           </h1>
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-gray-300 font-medium tracking-wide">
@@ -47,7 +47,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Menu Toggle Button */}
+        {/* Mobile Toggle */}
         <button
           className="md:hidden text-white text-3xl p-1 rounded-md hover:bg-white/10 transition"
           onClick={() => setIsOpen(!isOpen)}
@@ -58,9 +58,10 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown */}
       <div
-        className={`md:hidden bg-black/90 backdrop-blur-sm overflow-hidden transition-max-height duration-300 ease-in-out ${
+        aria-hidden={!isOpen}
+        className={`md:hidden bg-black/90 backdrop-blur-sm overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-60 py-4' : 'max-h-0'
         }`}
       >
