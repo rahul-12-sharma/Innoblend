@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -59,21 +60,21 @@ function About() {
             Get a free sample or consult with us — no commitment, just results.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-cyan-600 hover:bg-cyan-700 px-6 py-2 rounded-full text-sm font-medium transition"
             >
               📧 Email Us
-            </a>
-            <a
-              href="https://wa.me/8745030616"
+            </Link>
+            <Link
+              to="https://wa.me/8745030616"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition"
             >
               <FaWhatsapp size={16} />
               WhatsApp
-            </a>
+            </Link>
           </div>
         </div>
 
