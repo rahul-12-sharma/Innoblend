@@ -1,5 +1,5 @@
 import emailjs from 'emailjs-com';
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -9,18 +9,21 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
 function Footer() {
 
   const form = useRef();
+  const [status, setStatus] = useState(null); // null | 'success' | 'error'
 
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm('service_jpj3uh8', 'template_eiq6tge', form.current, 'SX3BenaUsSEL-tN_W')
       .then(
         (result) => {
           form.current.reset();
+          setStatus('success');
+          setTimeout(() => setStatus(null), 4000); // clear after 4s
         },
         (error) => {
-          alert('Failed to send email.');
+          setStatus('error');
+          setTimeout(() => setStatus(null), 4000);
         }
       );
   };
@@ -102,7 +105,9 @@ function Footer() {
             <h4 className="text-lg font-semibold text-cyan-400">Subscribe</h4>
             <p className="text-sm text-gray-400 mt-4">Get Started with Smarter Solutions — AI + Human, Perfectly Combined.</p>
             <form ref={form} onSubmit={sendEmail} className="mt-4 flex flex-col sm:flex-row gap-4">
+              <label htmlFor="email" className="sr-only">Email address</label>
               <input
+                id="email"
                 type="email"
                 name="user_email"
                 placeholder="Enter your email"
@@ -116,6 +121,13 @@ function Footer() {
                 Subscribe
               </button>
             </form>
+            {status === 'success' && (
+              <p className="mt-2 text-green-400 font-semibold">Thank you for subscribing!</p>
+            )}
+            {status === 'error' && (
+              <p className="mt-2 text-red-500 font-semibold">Oops! Something went wrong.</p>
+            )}
+
           </div>
         </div>
 
