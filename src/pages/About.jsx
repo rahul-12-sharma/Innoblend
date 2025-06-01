@@ -9,12 +9,14 @@ function About() {
       {/* Back to Home Icon */}
       <a
         href="/"
-        className="fixed bottom-30 right-6 z-50 bg-white hover:bg-gray-200 text-black px-4 py-2 rounded-full shadow-md flex items-center gap-2 transition-all"
+        aria-label="Back to Home"
+        className="fixed bottom-20 right-6 z-50 bg-white hover:bg-gray-200 text-black px-4 py-2 rounded-full shadow-md flex items-center gap-2 transition-all"
         title="Back to Home"
       >
         <AiOutlineHome size={20} />
         <span className="font-semibold text-sm hidden sm:inline">Home</span>
       </a>
+
 
 
       <div className="max-w-6xl mx-auto space-y-24">
