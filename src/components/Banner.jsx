@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import TypingEffect from './TypingEffect';
+import { Link } from 'react-router-dom';
 
 const backgroundImages = [
   "https://reallygooddesigns.com/wp-content/uploads/2022/11/Black-and-Orange-Website-Design-Examples.png",
@@ -12,10 +13,18 @@ const backgroundImages = [
 export default function Banner() {
   const [bgIndex, setBgIndex] = useState(0);
 
+  // Preload background images
+  useEffect(() => {
+    backgroundImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 2000); // Change every 2 seconds
+    }, 3000); // smoother experience
     return () => clearInterval(interval);
   }, []);
 
@@ -24,13 +33,12 @@ export default function Banner() {
       className="relative w-full flex items-center justify-center px-6 sm:px-12 md:px-20 py-16 bg-cover bg-center text-center transition-all duration-1000 ease-in-out"
       style={{
         backgroundImage: `url(${backgroundImages[bgIndex]})`,
-        height: '450px', // Set fixed height (or adjust as needed)
+        height: '450px',
       }}
     >
-      {/* Optional: slight dark overlay */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-      {/* Background glow effects */}
+      {/* Background glows */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.1, 1] }}
@@ -44,7 +52,6 @@ export default function Banner() {
         />
       </div>
 
-      {/* Text content */}
       <div className="relative z-20 text-white max-w-3xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -75,12 +82,12 @@ export default function Banner() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.4 }}
         >
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="bg-teal-400 text-black px-6 py-2 rounded-md shadow-md hover:bg-teal-600 transition duration-300 inline-block text-sm sm:text-base"
           >
             Contact Us
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
